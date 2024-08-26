@@ -1,30 +1,17 @@
-//AddRecipeForm.jsx
-import React, { useState, useEffect } from "react";
-import useRecipeStore from "./recipeStore.js";
+// src/components/AddRecipeForm.jsx
+import React, { useState } from 'react';
+import { useRecipeStore } from '../recipeStore';
 
-const AddRecipeForm = ({ currentRecipe, setCurrentRecipe }) => {
-  const addRecipe = useRecipeStore((state) => state.addRecipe);
-  const updateRecipe = useRecipeStore((state) => state.updateRecipe);
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-
-  useEffect(() => {
-    if (currentRecipe) {
-      setTitle(currentRecipe.title);
-      setDescription(currentRecipe.description);
-    }
-  }, [currentRecipe]);
+const AddRecipeForm = () => {
+  const addRecipe = useRecipeStore(state => state.addRecipe);
+  const [title, setTitle] = useState('');
+  const [description, setDescription] = useState('');
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (currentRecipe) {
-      updateRecipe({ ...currentRecipe, title, description });
-      setCurrentRecipe(null);
-    } else {
-      addRecipe({ id: Date.now(), title, description });
-    }
-    setTitle("");
-    setDescription("");
+    addRecipe({ id: Date.now(), title, description });
+    setTitle('');
+    setDescription('');
   };
 
   return (
@@ -40,11 +27,10 @@ const AddRecipeForm = ({ currentRecipe, setCurrentRecipe }) => {
         onChange={(e) => setDescription(e.target.value)}
         placeholder="Description"
       />
-      <button type="submit">
-        {currentRecipe ? "Update Recipe" : "Add Recipe"}
-      </button>
+      <button type="submit">Add Recipe</button>
     </form>
   );
 };
 
 export default AddRecipeForm;
+
