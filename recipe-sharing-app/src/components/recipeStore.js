@@ -1,18 +1,11 @@
-// recipeStore.js
-import create from "zustand";
+// src/recipeStore.js
+import create from 'zustand';
 
-const useRecipeStore = create((set) => ({
+const useRecipeStore = create(set => ({
   recipes: [],
-  favorites: [],
-  recommendations: [],
-
-  addFavorite: (recipeId) =>
-    set((state) => ({ favorites: [...state.favorites, recipeId] })),
-  removeFavorite: (recipeId) =>
-    set((state) => ({
-      favorites: state.favorites.filter((id) => id !== recipeId),
-    })),
-  generateRecommendations: () => {},
+  addRecipe: (newRecipe) => set(state => ({ recipes: [...state.recipes, newRecipe] })),
+  setRecipes: (recipes) => set({ recipes })
 }));
 
-export default useRecipeStore;
+export { useRecipeStore };
+
