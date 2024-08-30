@@ -39,7 +39,7 @@ function App() {
       <Footer />
       <UserProfile 
         name="Alice"
-        age="25"
+        age="26"
         bio="Loves hiking and photography"
         />
     </>
